@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Error</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container error-container">
+        <div class="error-icon">❌</div>
+        
+        <h1>Verification Error</h1>
+        
+        <p class="message">
+            {{ error_message if error_message else "An error occurred during verification." }}
+        </p>
+        
+        <div style="margin-top: 30px;">
+            <p style="font-size: 0.9rem; opacity: 0.8;">
+                Common issues:
+            </p>
+            <ul style="text-align: left; margin: 15px auto; max-width: 300px; font-size: 0.9rem; opacity: 0.8;">
+                <li>Verification link expired (10 minutes limit)</li>
+                <li>Link already used</li>
+                <li>Invalid or tampered link</li>
+            </ul>
+        </div>
+        
+        <button class="button" onclick="window.close()">Close</button>
+    </div>
+    
+    <script>
+        // Auto-close after 10 seconds (optional)
+        setTimeout(() => {
+            const autoClose = {{ auto_close|default(false)|tojson }};
+            if (autoClose) {
+                window.close();
+            }
+        }, 10000);
+    </script>
+</body>
+</html>

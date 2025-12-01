@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
+        
+        <h1>✅ Verified!</h1>
+        <p class="message">Redirecting you to your file...</p>
+        
+        <div 
+            id="countdown" 
+            class="countdown" 
+            data-redirect-url="{{ redirect_url }}"
+            data-seconds="{{ countdown_seconds|default(5) }}"
+        >
+            {{ countdown_seconds|default(5) }}
+        </div>
+        
+        <div class="loader">
+            <div class="loader-bar"></div>
+        </div>
+        
+        <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">
+            You will be redirected automatically...
+        </p>
+        
+        <button id="skip-button" class="button" style="margin-top: 15px;">
+            Skip & Go Now
+        </button>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/countdown.js') }}"></script>
+</body>
+</html>
